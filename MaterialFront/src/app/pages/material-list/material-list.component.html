@@ -17,10 +17,11 @@
             <th>Nombre</th>
             <th>Descripcion</th>
             <th>Serial</th>
-            <th>Numero Interno</th>
             <th>Estado</th>
             <th>Ciudad</th>
-
+            <th>Tipo</th>
+            <th>Fecha Compra</th>
+            <th>Fecha Venta</th>
             <th></th>
             <th></th>
         </tr>
@@ -33,9 +34,11 @@
             <td>{{materiales.nombre}}</td>
             <td>{{materiales.descripcion}}</td>
             <td>{{materiales.serial}}</td>
-            <td>{{materiales.numeroInterno}}</td>
             <td>{{materiales.estado}}</td>
             <td>{{materiales.ciudad.nombre}}</td>
+            <td>{{materiales.tipo}}</td>
+            <td>{{materiales.fechaCompra}}</td>
+            <td>{{materiales.fechaVenta}}</td>
             <td>
                 <button class="btn btn-primary" (click)="llenarForm(materiales)">
                     <i class="fa fa-edit"></i>

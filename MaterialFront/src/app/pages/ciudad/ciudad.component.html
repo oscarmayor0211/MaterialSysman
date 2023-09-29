@@ -1,0 +1,59 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 p-3">
+            <form autocomplete="off" [formGroup]="form" (ngSubmit)="createCiudad()">
+                <h4>Registrar Ciudad</h4>
+                <hr />
+
+                <div class="form-group row">
+                    <div class="col-10">
+                        <input class="form-control" type="hidden" formControlName="idciudad" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Ciudad</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" formControlName="nombre"
+                            placeholder="Ciudad" [class.is-invalid]="" />
+                        <small *ngIf="" class="text-danger">Ingrese la ciudad</small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-3 col-form-label">Departamento</label>
+                    <div class="col-9">
+                        <input class="form-control" type="text" formControlName="departamento" placeholder="Departamento"
+                            [class.is-invalid]="" />
+                        <small *ngIf="" class="text-danger">Ingrese un Departamento</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">&nbsp;</label>
+                    <div class="input-group col-md-10">
+                        <button type="submit" class="btn btn-outline-primary btn-block">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">&nbsp;</label>
+                <div class="input-group col-md-10">
+                    <button type="button"  routerLink="/*" class="btn btn-outline-primary btn-block">
+                        Cancelar
+                    </button>
+                </div>
+            </div>
+            
+           
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <h2 class="card-header text-center">Lista de Ciudades</h2>
+                <p class="card-text">
+                    <app-ciudad-list [ciudad]="ciudad" (editMaterial)="handleEditCiudad($event)"  ></app-ciudad-list>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

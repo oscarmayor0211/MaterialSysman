@@ -1,0 +1,26 @@
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Ciudad</th>
+            <th>Departamento</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <tr *ngFor="let ciudad of ciudad">
+            <td>{{ ciudad.idciudad }}</td>
+            <td>{{ciudad.nombre}}</td>
+            <td>{{ciudad.departamento}}</td>
+        
+            <td>
+                <button class="btn btn-primary"  (click)="llenarForm(ciudad)">
+          <i class="fa fa-edit"></i>
+        </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

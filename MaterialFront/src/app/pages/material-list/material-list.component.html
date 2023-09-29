@@ -1,0 +1,51 @@
+<div>
+    <h3>Buscar Materiales por Ciudad</h3>
+    <form class="form-inline" [formGroup]="ciudadForm" (ngSubmit)="buscarMateriales()">
+        <input class="form-control mr-sm-2" type="search" aria-label="Search" formControlName="ciudad"
+            placeholder="Ciudad">
+        <button class="btn btn-outline-success my-2 my-sm-0" [disabled]="!ciudadForm.valid">Buscar</button>
+        <button class="btn btn-outline-success my-2 my-sm-2 m-4" type="button" (click)="getAllMaterial()">Ver
+            todos</button>
+
+    </form>
+
+</div>
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>Serial</th>
+            <th>Numero Interno</th>
+            <th>Estado</th>
+            <th>Ciudad</th>
+
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+
+        <tr *ngFor="let materiales of material">
+            <td>{{ materiales.id }}</td>
+            <td>{{materiales.nombre}}</td>
+            <td>{{materiales.descripcion}}</td>
+            <td>{{materiales.serial}}</td>
+            <td>{{materiales.numeroInterno}}</td>
+            <td>{{materiales.estado}}</td>
+            <td>{{materiales.ciudad.nombre}}</td>
+            <td>
+                <button class="btn btn-primary" (click)="llenarForm(materiales)">
+                    <i class="fa fa-edit"></i>
+                </button>
+            </td>
+            <td>
+                <button class="btn btn-danger" (click)="deleteMaterial(materiales.id)">
+                    <i class="fa fa-trash-o"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>

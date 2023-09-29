@@ -1,0 +1,146 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5 p-3">
+            <form autocomplete="off" [formGroup]="form" (ngSubmit)="createMaterial()">
+                <h4>Registrar Material</h4>
+                <hr />
+
+                <div class="form-group row">
+                    <div class="col-10">
+                        <input class="form-control" type="hidden" formControlName="id" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Nombre</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" formControlName="nombre"
+                            placeholder="Nombre del material" [class.is-invalid]="NameInvalid" />
+                        <small *ngIf="NameInvalid" class="text-danger">Ingrese el nombre</small>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Descripcion</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" formControlName="descripcion" placeholder="Descripcion"
+                            [class.is-invalid]="DescriptionInvalid" />
+                        <small *ngIf="DescriptionInvalid" class="text-danger">Ingrese una descripcion</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Tipo</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" formControlName="tipo"
+                            placeholder="Tipo de material" [class.is-invalid]="TypeInvalid" />
+                        <small *ngIf="TypeInvalid" class="text-danger">Ingrese el tipo</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Serial</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" formControlName="serial"
+                            placeholder="Serial del material" [class.is-invalid]="SerialInvalid" />
+                        <small *ngIf="SerialInvalid" class="text-danger">Ingrese el Serial</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Numero Interno</label>
+                    <div class="col-10">
+                        <input class="form-control" type="text" formControlName="numeroInterno"
+                            placeholder="Numero interno del material" [class.is-invalid]="NumInternoInvalid" />
+                        <small *ngIf="NumInternoInvalid" class="text-danger">Ingrese el numero interno</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Precio</label>
+                    <div class="col-10">
+                        <input class="form-control" type="number" formControlName="precio"
+                            placeholder="Precio del material" [class.is-invalid]="PrecioInvalid" />
+                        <small *ngIf="PrecioInvalid" class="text-danger">Ingrese el Precio</small>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Fecha Comprar</label>
+                    <div class="col-10">
+                        
+                        <div class="col">
+                            <input class="form-control" type="date"  name="fechaCompra" id="fechaCompra" [class.is-invalid]="fechaCompraInvalid"  formControlName="fechaCompra" required >
+                        </div>
+                        <small *ngIf="" class="text-danger">Ingrese la fecha de Compra</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Fecha Venta</label>
+                    <div class="col-10">
+                        
+                        <div class="col">
+                            <input class="form-control" type="date"  name="fechaVenta" id="fechaVenta"  [class.is-invalid]="fechaVentaInvalid"  formControlName="fechaVenta" required >
+                        </div>
+                        <small *ngIf="fechaVentaInvalid" class="text-danger">Ingrese la fecha de venta</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">Estado</label>
+                    <div class="col-10" [class.is-invalid]="EstadoInvalid" >
+                        <select class="custom-select" formControlName="estado"
+                            aria-label="Example select with button addon" [class.is-invalid]="">
+                            <option value="null" selected disabled>
+                                Seleccione un estado
+                            </option>
+                            <option value="activo">Activo
+                            </option>
+                            <option value="disponible">Disponible</option>
+                            <option value="asignado">Asignado</option>
+                        </select>
+                        <small *ngIf="EstadoInvalid" class="text-danger">Seleccione un estado</small>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-2 col-form-label" >Ciudad</label>
+                    <div class="col-10" [class.is-invalid]="CiudadInvalid">
+                        <select class="custom-select" formControlName="idciudad"
+                            aria-label="Example select with button addon" [class.is-invalid]="CiudadInvalid">
+                            <option value="null" selected disabled>
+                                Seleccione una Ciudad
+                            </option >
+                            <option *ngFor="let ciu of ciudad" value="{{ ciu.idciudad }}">
+                                {{ciu.nombre}}
+                            </option>
+                        </select>
+                        <small *ngIf="CiudadInvalid" class="text-danger">Seleccione una Ciudad</small>
+                    </div>
+                </div>
+
+                
+                <div class="form-group row">
+                    <label class="col-2 col-form-label">&nbsp;</label>
+                    <div class="input-group col-md-10">
+                        <button type="submit" class="btn btn-outline-primary btn-block">
+                            Guardar
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="form-group row">
+                <label class="col-2 col-form-label">&nbsp;</label>
+                <div class="input-group col-md-10">
+                    <button type="button"  routerLink="/ciudad" class="btn btn-outline-primary btn-block">
+                        Crear Ciudad
+                    </button>
+                </div>
+            </div>
+            
+           
+        </div>
+        <div class="col-md-7">
+            <div class="card">
+                <h2 class="card-header text-center">Lista de Materiales</h2>
+                <app-material-list  [material]="material"  (editMaterial)="handleEditMaterial($event)"  (deletMaterial)="handleDeleteMaterial($event)"></app-material-list>
+                <p class="card-text">
+
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

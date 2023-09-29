@@ -11,14 +11,13 @@ import org.springframework.data.repository.query.Param;
 
 public interface MaterialRepository extends JpaRepository<Material, Long> {
 	@Query("SELECT m FROM Material m WHERE " +
-			"(:tipoParam IS NULL OR m.tipo = :tipoParam) AND " +
-			"(:fechaCompraParam IS NULL OR m.fechaCompra = :fechaCompraParam) AND " +
-			"(:serialParam IS NULL OR m.serial = :serialParam)")
+			"(:tipo IS NULL OR m.tipo = :tipo  OR m.fechaCompra = :fechaCompra OR m.serial = :serial ) ")
 	List<Material> buscarMaterialesPorFiltros(
-			@Param("tipoParam") String tipo,
-			@Param("fechaCompraParam") Date fechaCompra,
-			@Param("serialParam") String serial
-	);
+			@Param("tipo") String tipo,
+			@Param("fechaCompra") Date fechaCompra,
+			@Param("serial") String serial
+
+			);
 
 
 	List<Material> findByCiudadNombre(String ciudadNombre);

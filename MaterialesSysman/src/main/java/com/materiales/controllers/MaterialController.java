@@ -61,26 +61,26 @@ public class MaterialController {
     // Buscar materiales por tipo, fecha de compra y serial
     @GetMapping("/buscar")
     public List<Material> buscarMateriales(
-        @RequestParam(required = false) String tipo,
-        @RequestParam(required = false) String fechaCompra,
-        @RequestParam(required = false) String serial) throws ParseException {
-
+        @RequestParam(required = false,name = "tipo") String tipo,
+        @RequestParam(required = false,name= "fechaCompra" )String fechaCompra,
+        @RequestParam(required = false,name= "serial" )String serial) throws ParseException {
+        System.out.println(tipo + fechaCompra );
         // Convierte la cadena de fecha de compra a un objeto Date si se proporciona
         Date fecha = null;
         if (fechaCompra != null && !fechaCompra.isEmpty()) {
             // Realiza la conversión de la cadena de fecha a Date aquí
-            // Asume que la fecha está en el formato yyyy-MM-dd para este ejemplo
+            // Asume que la fecha está en el formato yyyy-MM-dd
             try {
                 fecha = new SimpleDateFormat("yyyy-MM-dd").parse(fechaCompra);
             } catch ( Exception  e) {
                throw new ParseException(e.getMessage());
-                // Puedes lanzar una excepción personalizada o devolver un error adecuado
+                //  lanzar una excepción
             }
         }
 
         // Utiliza la consulta personalizada del repositorio para buscar materiales
-        System.out.println(materialRepository.buscarMaterialesPorFiltros(tipo, fecha, serial));
-        return materialRepository.buscarMaterialesPorFiltros(tipo, fecha, serial);
+        System.out.println(materialRepository.buscarMaterialesPorFiltros(tipo  ,fecha , serial));
+        return materialRepository.buscarMaterialesPorFiltros(tipo , fecha , serial);
     }
 
     @ApiOperation("Obtener todos los materiales por ciudad")
